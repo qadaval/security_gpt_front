@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<div class="d-flex align-items-center justify-content-center">
+  <div class="col-sm-3 text-center">
+    <form [formGroup]="signupForm!" (ngSubmit)="onSubmit()">
+
+        <label>Username</label>
+        <input type="text" formControlName="username" class="form-control"  />
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" formControlName="password" class="form-control"  />
+      </div>
+      <div>
+        <a class="button" routerLink="/login">Already have an account? Login!</a>
+      </div>
+      <button mat-raised-button class="bg-dark text-white" [disabled]="loading">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        Sign Up
+      </button>
+      <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+    </form>
+  </div>
+</div>
+
+<app-footer></app-footer>
+<router-outlet></router-outlet>
+

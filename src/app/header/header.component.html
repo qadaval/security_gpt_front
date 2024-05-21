@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home">Home</a>
+    <div class="collapse navbar-collapse">
+      <div class="navbar-nav mx-auto">
+        <h5><a class="nav-link" id="Learnito" routerLink="/home"> Security with GPT (Шаблон)</a></h5>
+      </div>
+      <div class="navbar-nav">
+        <a *ngIf="!isLoggedIn" class="nav-link" routerLink="/login">Login</a>
+        <a *ngIf="!isLoggedIn" class="nav-link" routerLink="/register">Signup</a>
+        <a *ngIf="isLoggedIn"  class="nav-link text-white" routerLink="/profile"><i class="bi bi-person-circle"></i> Profile </a>
+        <a *ngIf="isAdmin"  class="nav-link text-white" routerLink="/admin-home"><i class="bi bi-gear"></i> Admin </a>
+        <a *ngIf="isLoggedIn"  class="nav-link" routerLink="/login" (click)="logout()">Logout</a>
+      </div>
+    </div>
+  </div>
+</nav>
