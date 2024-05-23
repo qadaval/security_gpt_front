@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import {RouterLinkWithHref, RouterOutlet} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
-import { HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {RouterTestingModule} from "@angular/router/testing";
 import {AppRoutingModule} from "./app-routing.module";
@@ -13,6 +13,8 @@ import { FooterComponent } from './footer/footer.component';
 import {MatButtonModule} from "@angular/material/button";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RegisterComponent} from "./register/register.component";
+import {AuthInterceptor} from "./auth.interceptor";
+import {AuthenticationService} from "./service/auth.service";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {RegisterComponent} from "./register/register.component";
     MatButtonModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    AuthenticationService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   exports: [
     FooterComponent,
     HeaderComponent
