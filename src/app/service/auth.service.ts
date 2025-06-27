@@ -24,7 +24,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string): Observable<User> {
-    return this.http.post(`${environment.apiUrl}/authenticate`, { username, password }, { observe: 'response', responseType: 'text' })
+    return this.http.post(`${environment.apiUrl}/api/auth/login`, { username, password }, { observe: 'response', responseType: 'text' })
       .pipe(
         map((res: HttpResponse<string>) => {
           if (res.status === 200) {
@@ -45,7 +45,7 @@ export class AuthenticationService {
   }
 
   register(data: User): Observable<User> {
-    return this.http.post(`${environment.apiUrl}/register`, data, { observe: 'response', responseType: 'text' })
+    return this.http.post(`${environment.apiUrl}/api/auth/register`, data, { observe: 'response', responseType: 'text' })
       .pipe(
         map((res: HttpResponse<string>) => {
           if (res.status === 200) {
