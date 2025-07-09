@@ -23,6 +23,10 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
+  public getUserByUsername(username: string): Observable<User> {
+    return this.http.get(`${environment.apiUrl}/api/auth/${username}`)
+  }
+
   login(username: string, password: string): Observable<User> {
     return this.http.post(`${environment.apiUrl}/api/auth/login`, { username, password }, { observe: 'response', responseType: 'text' })
       .pipe(

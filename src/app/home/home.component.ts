@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from "@angular/material/button";
 import { AuthenticationService } from "../service/auth.service";
 import { Router } from '@angular/router';
 import {User} from "../model/user";
 import {NgIf} from "@angular/common";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ import {NgIf} from "@angular/common";
   ],
   templateUrl: './home.component.html'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
   currentUser: User | null = null;
 
   constructor(private authService: AuthenticationService, private router: Router) {
@@ -25,8 +26,24 @@ export class HomeComponent {
       }
     });
   }
+  ngOnInit(): void {
+    if (this.currentUser?.username && this.currentUser) {
+      this.getUserByUsername(this.currentUser.username);
+    }
+  }
 
   logout() {
     this.authService.logout();
+  }
+
+  public getUserByUsername(username: string): void {
+    this.authService.getUserByUsername(username).subscribe(
+      (response: User) => {
+        this.currentUser = response;
+        console.log("User Current: ", this.currentUser);
+      }, (error: HttpErrorResponse) => {
+        console.log(error.message);
+      }
+    )
   }
 }

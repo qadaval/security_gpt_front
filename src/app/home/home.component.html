@@ -1,7 +1,7 @@
 <div class="container h-100 d-flex justify-content-center align-items-center">
   <div class="text-center">
     <h1>Welcome to the home page!</h1>
-    <h2 *ngIf="currentUser" style="font-weight: lighter">Logged in as: {{ currentUser.username }}</h2>
+    <h2 *ngIf="currentUser" style="font-weight: lighter">Logged in as: {{ currentUser.id }}</h2>
     <button mat-raised-button (click)="logout()">Logout</button>
   </div>
 </div>
