@@ -11,10 +11,11 @@ import {AppRoutingModule} from "./app-routing.module";
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import {MatButtonModule} from "@angular/material/button";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RegisterComponent} from "./register/register.component";
 import {AuthInterceptor} from "./auth.interceptor";
 import {AuthenticationService} from "./service/auth.service";
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {AuthenticationService} from "./service/auth.service";
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    HomeComponent
 
   ],
   imports: [
@@ -34,7 +36,8 @@ import {AuthenticationService} from "./service/auth.service";
     RouterTestingModule,
     AppRoutingModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     AuthenticationService,

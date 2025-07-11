@@ -3,8 +3,48 @@
     <a class="navbar-brand" routerLink="/home">Home</a>
     <div class="collapse navbar-collapse">
       <div class="navbar-nav mx-auto">
-        <h5><a class="nav-link" id="Learnito" routerLink="/home"> Security with GPT (Шаблон)</a></h5>
+        <h5><a class="nav-link" id="Learnito" routerLink="/home"> </a></h5>
+      </div >
+      <!-- … остальной код nav … -->
+
+      <div class="navbar-nav me-auto" *ngIf="isLoggedIn">
+        <!-- Выбор области -->
+        <ng-container *ngIf="isChoosingOblast; else districtBlock">
+          <select
+            class="form-select form-select-sm"
+            [(ngModel)]="selectedOblastId"
+            (change)="onOblastChange()"
+          >
+            <option [ngValue]="null">Выберите область</option>
+            <option *ngFor="let o of locations" [ngValue]="o.id">
+              {{ o.name }}
+            </option>
+          </select>
+        </ng-container>
+
+        <!-- Выбор района + кнопка назад -->
+        <ng-template #districtBlock>
+          <button
+            class="btn btn-sm btn-secondary me-2"
+            (click)="backToOblasts()"
+          >
+            ← Назад
+          </button>
+          <select
+            class="form-select form-select-sm"
+            [(ngModel)]="selectedDistrictId"
+            (change)="onDistrictChange()"
+          >
+            <option [ngValue]="null">Выберите район</option>
+            <option *ngFor="let d of districts" [ngValue]="d.id">
+              {{ d.name }}
+            </option>
+          </select>
+        </ng-template>
       </div>
+
+
+
       <div class="navbar-nav">
         <a *ngIf="!isLoggedIn" class="nav-link" routerLink="/login">Login</a>
         <a *ngIf="!isLoggedIn" class="nav-link" routerLink="/register">Signup</a>
