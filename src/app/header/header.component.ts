@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit{
   constructor(private authService: AuthenticationService, private router: Router, private locationService: LocationService) {
     this.authService.currentUser.subscribe(user => {
       this.currentUser = user;
-      if (!user) this.router.navigate(['/login']);
+      // if (!user) this.router.navigate(['/login']);
     });
   }
   ngOnInit() {
